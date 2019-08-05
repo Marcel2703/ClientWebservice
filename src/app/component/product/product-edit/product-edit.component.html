@@ -8,10 +8,11 @@
     </div>
   </div> 
   <div class="panel-content">
+      <ng2-toasty position="top-right"></ng2-toasty>
     <div class="row">
       <div class="col-lg-10 col-lg-push-1 col-md-12 col-md-push-0 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0 padd10 ">
         <div class="widget">             
-                <form [formGroup]="form" *ngIf="products">  
+                <form [formGroup]="form" *ngIf="product">  
                         <li>
                               <div class="sf_columns col-md-11">
                                   <label>nom</label>
@@ -57,7 +58,7 @@
                 <div class="sf-steps-navigation sf-align-right">
                   <span id="sf-msg" class="sf-msg-error"></span>
           
-                  <button  type="submit" class="btn btn-warning mdm-radius inputSubmit" (click)="addProduct()" >ENREGISTRER</button>  
+                  <button  type="submit" class="btn btn-warning mdm-radius inputSubmit" (click)="updateProduct()" >ENREGISTRER</button>  
                 </div>
               </form>
             </div>

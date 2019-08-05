@@ -27,10 +27,11 @@ export class ProductEditComponent implements OnInit {
   loadingAdd = false;
   categories: Array<any>;
   currentUrl: string;
-  products: any;
+
 
   constructor(
     public productService: ProductService,
+    public categoryService: CategoryService,
     private messageShared: MessageShared,
     private toastService: ToastService,
     private route: ActivatedRoute,
@@ -98,7 +99,7 @@ export class ProductEditComponent implements OnInit {
 
   getCategories(): void
   {
-    this.productService.getProducts()
+    this.categoryService.getCategories()
     .subscribe( res => {
           if (Array.isArray(res['records'])) {
             this.categories = res['records'];
@@ -115,10 +116,8 @@ export class ProductEditComponent implements OnInit {
   {
     this.productService.EditProduct(id)
     .subscribe( res => {
-          if (Array.isArray(res['records'])) {
-            this.products = res['records'];
-            console.log(this.products); 
-          }     
+     this.product = res;
+    console.log(this.product);    
     },
     err => {
  
@@ -132,13 +131,15 @@ export class ProductEditComponent implements OnInit {
         this.formService.markAsPristine(this.form);
 
         if (res.statusCode = 201) {
+        console.log(res.message); 
+        console.log(res['message']);
           this.messageShared.setMessage(new MessageDTO(res['message'], this.toastService.typeToast.success, 'SUCCES'));
-          this.router.navigate(['listProduit']);
+          this.router.navigate(['list']);
         } else {
-          this.errors = res['errors'];
+         this.errors = res['errors'];
           this.messageShared.setMessage(new MessageDTO(res['message'], this.toastService.typeToast.error, 'ERREUR'));
 
-        }
+       }
       },
       err => {
         this.messageShared.setMessage(new MessageDTO(err, this.toastService.typeToast.error, 'ERREUR'));

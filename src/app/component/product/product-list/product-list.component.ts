@@ -23,6 +23,7 @@ export class ProductListComponent implements OnInit {
   product = new Product();
   products: Array<any>;
   loadingDelete = false;
+  loading = false;
 
   constructor(
     public productService: ProductService,
@@ -35,6 +36,7 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.getProducts();
   }
 
@@ -61,7 +63,7 @@ export class ProductListComponent implements OnInit {
   }
 
   editProduct(id: any): void {
-    this.router.navigate(['product/read_one', id]);
+    this.router.navigate(['edit', id]);
   }
 /*
   viewProduct(id: any): void {
@@ -75,6 +77,7 @@ export class ProductListComponent implements OnInit {
           if (Array.isArray(res['records'])) {
             this.products = res['records'];
             console.log(this.products); 
+            this.loading = false;
           }     
     },
     err => {

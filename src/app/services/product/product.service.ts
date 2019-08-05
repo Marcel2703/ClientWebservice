@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {  HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {ApiService} from "../api/api.service";
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
@@ -29,20 +29,22 @@ export class ProductService {
 
 
 // Sending a Get request to product/read_one.php?id=1
-EditProduct(product: Product): Observable<any> {
-  return this.api.get(`api/Profiles/Delete`, product.id)
+EditProduct(id: any): Observable<any> {
+  //const params = this.getHttpParams(id);
+  return this.api.get('product/read_one.php', { id: id})
     .catch(this.api.handleError);
   }
 
+
   // Sending a Delete request to product/Delete
   deleteProduct(id: any): Observable<any> {
-    return this.api.delete('product/delete' + id)
+    return this.api.put('product/delete.php' , { id: id})
         .catch(this.api.handleError);
 }
 
 // Sending a PUT request to Product/update
 UpdateProduct(product: Product): Observable<any> {
-  return this.api.put(`product/update${product.id}`, product)
+  return this.api.put('product/update.php',product)
     .catch(this.api.handleError);
   }
 

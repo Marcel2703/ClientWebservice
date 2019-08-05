@@ -9,7 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // import { NgPipesModule } from 'ngx-pipes';
 
 import { LoaderModule } from '../component/loader/loader.module';
-import { BreadcrumbsService } from './subjects';
+import { BreadcrumbsService,MessageShared } from './subjects';
 import {
   FormUtilsService,
   FilterUtilsService,

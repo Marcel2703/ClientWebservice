@@ -14,7 +14,7 @@ import { CategoryListComponent } from './component/category/category-list/catego
 import { LoaderComponent } from './component/loader/loader.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from './shared';
+import { SharedModule, MessageShared } from './shared';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,9 @@ import { SharedModule } from './shared';
     ReactiveFormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    MessageShared
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
